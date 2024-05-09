@@ -79,7 +79,8 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_button"
-                app:backgroundTint="@color/blue"/>
+                app:backgroundTint="@color/blue"
+                android:textColor="@color/white"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -96,7 +97,7 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="1dp"
                     android:layout_marginRight="5dp"
                     android:text="SystemDK.com"
                     android:textColor="@color/white" />
@@ -109,6 +110,27 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:gravity="center_horizontal"
+                android:layout_marginRight="7dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/facebook"/>
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/instagram"/>
+
+
+
+
+            </LinearLayout>
 
         </LinearLayout>
 
