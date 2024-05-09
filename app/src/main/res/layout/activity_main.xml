@@ -106,9 +106,7 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                     android:layout_height="1dp"
                     android:background="@color/white" />
 
-
             </LinearLayout>
-
 
         </LinearLayout>
 

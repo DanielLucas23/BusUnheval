@@ -83,7 +83,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         easyWayLocation?.startLocation()
     }
 
-    override fun onDestroy() { //Cierra la Aplicación o pasamos a otra actividad
+    override fun onDestroy() { //Cuando se cierra la Aplicación o pasamos a otra actividad
         super.onDestroy()
         easyWayLocation?.endUpdates()
     }
