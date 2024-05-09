@@ -72,6 +72,7 @@
 
             <Button
                 android:id="@+id/btnLogin"
+
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="INGRESAR"
@@ -104,14 +105,23 @@
                     android:textColor="@color/white"
                    />
 
+
                 <View
                     android:layout_width="70dp"
                     android:layout_height="1dp"
                     android:background="@color/white" />
 
 
-            </LinearLayout>
 
+            </LinearLayout>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/facebook"
+                android:layout_marginRight="30dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginTop="30dp"
+                />
 
         </LinearLayout>
 
