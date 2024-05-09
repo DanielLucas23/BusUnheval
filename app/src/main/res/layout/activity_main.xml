@@ -101,7 +101,8 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
                     android:text="SystemDK.com"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/white"
+                   />
 
                 <View
                     android:layout_width="70dp"
