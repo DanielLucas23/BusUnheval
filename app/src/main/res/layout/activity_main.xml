@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activities.MainActivity">
-
     <FrameLayout
 
         android:layout_width="match_parent"
@@ -66,23 +65,21 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
-                android:text="Bienvenido a la aplicación de geolocalización del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillosa herramienta diseñada especialmente para hacer su experiencia mas comoda y eficiente."
+                android:text="Bienvenido a la aplicación de geolocalización
+del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillosa herramienta diseñada especialmente para hacer su experiencia mas comoda y eficiente."
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
             <Button
                 android:id="@+id/btnLogin"
-
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="INGRESAR"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
-                android:textColor="@color/white"
                 android:background="@drawable/rounded_button"
-                app:backgroundTint="@color/blue"
-                />
+                app:backgroundTint="@color/blue"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -102,9 +99,7 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginRight="5dp"
                     android:text="SystemDK.com"
-                    android:textColor="@color/white"
-                   />
-
+                    android:textColor="@color/white" />
 
                 <View
                     android:layout_width="70dp"
@@ -112,22 +107,9 @@
                     android:background="@color/white" />
 
 
-
             </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:src="@drawable/facebook"
-                android:layout_marginTop="10dp"
-                android:layout_marginRight="50dp"/>
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:src="@drawable/instagram"
-                android:layout_marginLeft="60dp"
-                android:layout_marginTop="10dp"
-                />
+
         </LinearLayout>
 
     </FrameLayout>
