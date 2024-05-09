@@ -80,7 +80,8 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
                 android:background="@drawable/rounded_button"
-                app:backgroundTint="@color/blue"/>
+                app:backgroundTint="@color/blue"
+                android:textColor="@color/white"/>
 
             <LinearLayout
                 android:layout_width="match_parent"
