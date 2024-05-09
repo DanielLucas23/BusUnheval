@@ -40,8 +40,13 @@ android {
 }
 
 dependencies {
-    implementation("com.beust:klaxon:5.5")
 
+
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.material)
+    implementation(libs.androidx.activity)
+    implementation(libs.androidx.constraintlayout)
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore-ktx")
@@ -53,12 +58,8 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.0.2")
     implementation("com.google.android.gms:play-services-location:20.0.0")
 
-    implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
-    implementation(libs.material)
-    implementation(libs.androidx.activity)
-    implementation(libs.androidx.constraintlayout)
-    implementation(libs.firebase.auth)
+    implementation("com.beust:klaxon:5.5")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
