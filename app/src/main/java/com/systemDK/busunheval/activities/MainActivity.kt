@@ -2,12 +2,10 @@ package com.systemDK.busunheval.activities
 
 import android.content.Intent
 import android.os.Bundle
-<<<<<<< Updated upstream
+
 import android.util.Log
 import android.widget.Toast
-=======
-import android.speech.RecognizerIntent
->>>>>>> Stashed changes
+
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -28,13 +26,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         enableEdgeToEdge() //Para que la app se extienda a los bordes
 
-<<<<<<< Updated upstream
+
         //Botones
         binding.btnLogin.setOnClickListener { Login() }
         
-=======
 
->>>>>>> Stashed changes
     }
 
     private fun Login(){
@@ -44,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val password ="123456"
         //binding.textFieldPassword.text.toString()
 
-<<<<<<< Updated upstream
+
         if(isValidForm(email, password)){
             authProvider.login(email, password).addOnCompleteListener {
                 if(it.isSuccessful){
@@ -85,6 +81,5 @@ class MainActivity : AppCompatActivity() {
         }
     }
 }
-=======
-}
->>>>>>> Stashed changes
+
+
