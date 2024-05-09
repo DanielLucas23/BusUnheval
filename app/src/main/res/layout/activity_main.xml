@@ -66,8 +66,7 @@
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
-                android:text="Bienvenido a la aplicación de geolocalización
-del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillosa herramienta diseñada especialmente para hacer su experiencia mas comoda y eficiente."
+                android:text="Bienvenido a la aplicación de geolocalización del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillosa herramienta diseñada especialmente para hacer su experiencia mas comoda y eficiente."
                 android:textAlignment="center"
                 android:textColor="@color/white" />
 
@@ -79,9 +78,10 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="30dp"
+                android:textColor="@color/white"
                 android:background="@drawable/rounded_button"
                 app:backgroundTint="@color/blue"
-                android:textColor="@color/white"/>
+                />
 
             <LinearLayout
                 android:layout_width="match_parent"
