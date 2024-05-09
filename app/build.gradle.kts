@@ -51,6 +51,8 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore-ktx")
 
+    implementation("com.beust:klaxon:5.5")
+
     //Integrar el mapa de Google
     implementation("com.google.maps.android:maps-ktx:3.2.0")
     implementation("com.google.maps.android:maps-utils-ktx:3.2.0")
@@ -58,7 +60,7 @@ dependencies {
     implementation("com.google.android.gms:play-services-maps:18.0.2")
     implementation("com.google.android.gms:play-services-location:20.0.0")
 
-    implementation("com.beust:klaxon:5.5")
+    implementation ("com.github.prabhat1707:EasyWayLocation:2.4")
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
