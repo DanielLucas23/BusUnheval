@@ -23,7 +23,6 @@ class MainActivity : AppCompatActivity() {
 
         //Botones
         binding.btnLogin.setOnClickListener { Login() }
-
     }
 
     private fun Login(){
@@ -66,10 +65,10 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
 
-    override fun onStart() {
-        super.onStart()
-        if (authProvider.existSession()) {
-            goToMap()
-        }
-    }
+   // override fun onStart() {
+   //     super.onStart()
+   //    if (authProvider.existSession()) {
+   //         goToMap()
+   //     }
+   // }
 }
