@@ -77,10 +77,11 @@ del bus UNHEVAL.  Es un placer contar con cada uno de ustedes en esta maravillos
                 android:text="INGRESAR"
                 android:layout_marginRight="30dp"
                 android:layout_marginLeft="30dp"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="15dp"
                 android:background="@drawable/rounded_button"
                 app:backgroundTint="@color/blue"
-                android:textColor="@color/white"/>
+                android:textColor="@color/white"
+                android:onClick="bienvenida"/>
 
             <LinearLayout
                 android:layout_width="match_parent"

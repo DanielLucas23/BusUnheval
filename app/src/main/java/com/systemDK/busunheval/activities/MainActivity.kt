@@ -1,18 +1,20 @@
 package com.systemDK.busunheval.activities
 
+import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.systemDK.busunheval.databinding.ActivityMainBinding
 import com.systemDK.busunheval.providers.AuthProvider
+import android.speech.tts.TextToSpeech
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
+    private lateinit var textToSpeech: TextToSpeech //Para la lectura de voz de agrego
     private lateinit var binding: ActivityMainBinding
     val authProvider = AuthProvider()
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,11 +23,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         enableEdgeToEdge() //Para que la app se extienda a los bordes
 
+        textToSpeech = TextToSpeech(this, this)//parte del la voz
         //Botones
-        binding.btnLogin.setOnClickListener { Login() }
+        binding.btnLogin.setOnClickListener {  Login()  }
+
+
     }
 
+
     private fun Login(){
+        //Al iniciar click leera el texto definido
+        textToSpeech.speak("Bienvenido a la app BUS UNHEVAL", TextToSpeech.QUEUE_FLUSH, null, null)
+
         //Obtener los datos ingresados de los inputs
         val email = "daniel@gmail.com"
         //binding.textFieldEmail.text.toString()
@@ -65,10 +74,24 @@ class MainActivity : AppCompatActivity() {
         startActivity(i)
     }
 
+    override fun onInit(status: Int) {
+        if (status == TextToSpeech.SUCCESS) {
+            textToSpeech.language = java.util.Locale.getDefault()
+        }
+    }
+
+    override fun onDestroy() {
+        if (textToSpeech.isSpeaking) {
+            textToSpeech.stop()
+        }
+        textToSpeech.shutdown()
+        super.onDestroy()
+    }
+
+}
    // override fun onStart() {
    //     super.onStart()
    //    if (authProvider.existSession()) {
    //         goToMap()
    //     }
    // }
-}
