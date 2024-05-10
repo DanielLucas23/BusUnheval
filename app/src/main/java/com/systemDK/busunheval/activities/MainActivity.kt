@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         textToSpeech.setSpeechRate(speechRate)
         //Al iniciar click leera el texto definido
 
-        textToSpeech.speak("Bienvenido BUS UNHEVAL", TextToSpeech.QUEUE_FLUSH, null, null)
+        textToSpeech.speak("Bienvenido bus unheval", TextToSpeech.QUEUE_FLUSH, null, null)
         //Obtener los datos ingresados de los inputs
         val email = "daniel@gmail.com"
         //binding.textFieldEmail.text.toString()
