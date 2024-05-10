@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         enableEdgeToEdge() //Para que la app se extienda a los bordes
 
         textToSpeech = TextToSpeech(this, this)//parte del la voz
+
         //Botones
         binding.btnLogin.setOnClickListener {  Login()  }
 
@@ -33,8 +34,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun Login(){
         //Al iniciar click leera el texto definido
-        textToSpeech.speak("Bienvenido a la app BUS UNHEVAL", TextToSpeech.QUEUE_FLUSH, null, null)
-
+        textToSpeech.speak("Bienvenido BUS UNHEVAL", TextToSpeech.QUEUE_FLUSH, null, null)
         //Obtener los datos ingresados de los inputs
         val email = "daniel@gmail.com"
         //binding.textFieldEmail.text.toString()
