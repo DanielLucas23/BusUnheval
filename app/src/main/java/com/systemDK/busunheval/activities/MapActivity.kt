@@ -11,8 +11,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.easywaylocation.EasyWayLocation
 import com.example.easywaylocation.Listener
 import com.google.android.gms.location.LocationRequest
@@ -40,7 +38,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         enableEdgeToEdge()
 
         val mapFragment = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-
         mapFragment.getMapAsync(this)
 
         //Contiene la configuración para utilizar los servicios de localización
@@ -98,7 +95,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 Manifest.permission.ACCESS_COARSE_LOCATION
             ) != PackageManager.PERMISSION_GRANTED
         ) {
-
             return
         }
         googleMap?.isMyLocationEnabled = true

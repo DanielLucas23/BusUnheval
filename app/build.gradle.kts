@@ -47,11 +47,12 @@ dependencies {
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
+    implementation("com.beust:klaxon:5.5")
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore-ktx")
 
-    implementation("com.beust:klaxon:5.5")
+
 
     //Integrar el mapa de Google
     implementation("com.google.maps.android:maps-ktx:3.2.0")
