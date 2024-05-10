@@ -33,7 +33,12 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
 
     private fun Login(){
+        // Configuración de la velocidad del habla
+        val speechRate = 1.8f // Ajusta la velocidad según sea necesario
+        // Configurar la velocidad del habla en el TextToSpeech
+        textToSpeech.setSpeechRate(speechRate)
         //Al iniciar click leera el texto definido
+
         textToSpeech.speak("Bienvenido BUS UNHEVAL", TextToSpeech.QUEUE_FLUSH, null, null)
         //Obtener los datos ingresados de los inputs
         val email = "daniel@gmail.com"
