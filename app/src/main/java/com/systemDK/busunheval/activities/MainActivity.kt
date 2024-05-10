@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun Login(){
         // Configuración de la velocidad del habla
-        val speechRate = 1.4f // Ajusta la velocidad según sea necesario
+        val speechRate = 1.0f // Ajusta la velocidad según sea necesario
         // Configurar la velocidad del habla en el TextToSpeech
         textToSpeech.setSpeechRate(speechRate)
         //Al iniciar click leera el texto definido
