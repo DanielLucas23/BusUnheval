@@ -63,6 +63,8 @@ dependencies {
 
     implementation ("com.github.prabhat1707:EasyWayLocation:2.4")
 
+    implementation ("com.github.imperiumlabs:GeoFirestore-Android:v1.4.0")
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
