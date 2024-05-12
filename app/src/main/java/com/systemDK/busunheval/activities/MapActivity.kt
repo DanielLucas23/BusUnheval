@@ -10,8 +10,10 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -63,6 +65,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         ))
+
+        //Imagen Emergente
+        val btnOpenPopup = findViewById<ImageView>(R.id.imageViewInfo)
+        btnOpenPopup.setOnClickListener {
+            imgEmergente()
+        }
+
     }
 
     val locationPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {permission ->
@@ -83,6 +92,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             }
         }
     }
+
+    private fun imgEmergente(){
+        // Creación de un cuadro de diálogo emergente
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Recorrido del Bus Universitario")
+        val imageView = ImageView(this)
+        imageView.setImageResource(R.drawable.recorrido_bus)
+        alertDialog.setView(imageView)
+        alertDialog.show()
+    }
+
 
     private fun addMarker(){
         val drawable = ContextCompat.getDrawable(applicationContext,R.drawable.ic_person_ubi)
