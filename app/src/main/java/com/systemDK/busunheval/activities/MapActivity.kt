@@ -115,6 +115,12 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                         }
                     }
                 }
+
+                val conductorLatLng = LatLng(location.latitude, location.longitude)
+                val marker = googleMap?.addMarker(
+                    MarkerOptions().position(conductorLatLng).title("Bus Disponible")
+                )
+
             }
 
             override fun onGeoQueryError(exception: Exception) {
