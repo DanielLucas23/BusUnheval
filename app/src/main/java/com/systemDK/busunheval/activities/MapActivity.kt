@@ -103,7 +103,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
     //Para obtener la ubicación de los conductores
     private fun getNearbyConductores(){
-        geoProvider.getNearbyConductor(myLocationLatLng!!, 15.0).addGeoQueryEventListener(object: GeoQueryEventListener {
+
+        if (myLocationLatLng == null) return
+
+        geoProvider.getNearbyConductor(myLocationLatLng!!, 20.0).addGeoQueryEventListener(object: GeoQueryEventListener {
 
             override fun onKeyEntered(documentID: String, location: GeoPoint) {
                 //Cuando se encuentre un conductor
@@ -116,11 +119,40 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                     }
                 }
 
+                //Creamos un nuevo marcador para el conductor conectado
                 val conductorLatLng = LatLng(location.latitude, location.longitude)
                 val marker = googleMap?.addMarker(
-                    MarkerOptions().position(conductorLatLng).title("Bus Disponible")
+                    MarkerOptions().position(conductorLatLng).title("Bus Disponible").icon(
+                        BitmapDescriptorFactory.fromResource(R.drawable.icon_autobus)
+                    )
                 )
 
+                marker?.tag = documentID
+                conductoresMarkers.add(marker!!)
+
+            }
+
+            override fun onKeyExited(documentID: String) {
+                for (marker in conductoresMarkers){
+                    if (marker.tag != null){
+                        if (marker.tag == documentID){
+                            marker.remove()
+                            conductoresMarkers.remove(marker)
+                            return
+                        }
+                    }
+                }
+            }
+
+            override fun onKeyMoved(documentID: String, location: GeoPoint) {
+
+                for (marker in conductoresMarkers){
+                    if (marker.tag != null) {
+                        if (marker.tag == documentID) {
+                            marker.position = LatLng(location.latitude, location.longitude)
+                        }
+                    }
+                }
             }
 
             override fun onGeoQueryError(exception: Exception) {
@@ -132,14 +164,6 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             }
 
 
-
-            override fun onKeyExited(documentID: String) {
-
-            }
-
-            override fun onKeyMoved(documentID: String, location: GeoPoint) {
-
-            }
 
         })
     }
@@ -225,6 +249,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         googleMap?.moveCamera(CameraUpdateFactory.newCameraPosition(
             CameraPosition.builder().target(myLocationLatLng!!).zoom(17f).build()
         ))
+        getNearbyConductores()
         addMarker()
     }
 
