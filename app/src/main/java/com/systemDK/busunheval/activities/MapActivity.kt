@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.google.firebase.firestore.GeoPoint
 import com.systemDK.busunheval.R
 import com.systemDK.busunheval.databinding.ActivityMapBinding
+import com.systemDK.busunheval.fragments.ModalBottonSheetMenu
 import com.systemDK.busunheval.providers.AuthProvider
 import com.systemDK.busunheval.providers.GeoProvider
 import org.imperiumlabs.geofirestore.callbacks.GeoQueryEventListener
@@ -47,6 +48,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var markerEstudiante: Marker? = null
     private val geoProvider = GeoProvider()
     private val authProvider = AuthProvider()
+
+    private val modalMenu = ModalBottonSheetMenu()
 
     private val conductoresMarkers = ArrayList<Marker>()
 
@@ -80,6 +83,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             imgEmergente()
         }
 
+        //Llamar al menu
+        binding.imageViewMenu.setOnClickListener { showModalMenu() }
+
     }
 
     val locationPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {permission ->
@@ -99,6 +105,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 }
             }
         }
+    }
+
+    //Para llamar el menu de opciones
+    private fun showModalMenu(){
+        modalMenu.show(supportFragmentManager, ModalBottonSheetMenu.TAG)
     }
 
     //Para obtener la ubicación de los conductores

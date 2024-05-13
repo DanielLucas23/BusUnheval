@@ -29,9 +29,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                
+
                 <LinearLayout
-                    android:id="@+id/linearLayoutProfile"
+                    android:id="@+id/linearLayoutConsultasAR"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -41,17 +41,17 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_person"/>
+                        android:src="@drawable/ic_realidad"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Perfil" />
+                        android:text="Información con AR" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/linearLayoutConsultas"
+                    android:id="@+id/linearLayoutAsistente"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -61,32 +61,12 @@
                     <ImageView
                         android:layout_width="60dp"
                         android:layout_height="60dp"
-                        android:src="@drawable/ic_consultas"/>
+                        android:src="@drawable/ic_asistente"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Consultas" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/linearLayoutHistori"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <ImageView
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
-                        android:src="@drawable/ic_history"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Historial" />
+                        android:text="Asistente de Voz" />
 
                 </LinearLayout>
 
