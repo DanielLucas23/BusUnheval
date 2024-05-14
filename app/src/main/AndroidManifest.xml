@@ -12,6 +12,7 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -22,6 +23,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BusUnheval"
         tools:targetApi="31">
+        <meta-data android:name="com.google.ar.core" android:value="required"/>
         <activity
             android:name=".activities.MapActivity"
             android:exported="false" />
@@ -29,7 +31,7 @@
             android:name=".activities.ConsultasActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.AR"
+            android:name=".activities.ARActivity"
             android:exported="false" />
         <activity
             android:name=".activities.MainActivity"
