@@ -43,7 +43,7 @@ dependencies {
 
 
     implementation(libs.androidx.core.ktx)
-    implementation(libs.androidx.appcompat)
+
     implementation(libs.material)
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
@@ -68,4 +68,13 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+
+    // Otras dependencias necesarias para tu proyecto ar
+
+    implementation ("com.google.ar.sceneform.ux:sceneform-ux:1.15.0")
+    implementation ("com.google.ar.sceneform:assets:1.15.0")
+    implementation ("com.google.ar:core:1.29.0")
+    implementation ("com.karumi:dexter:5.0.0")
+    implementation ("androidx.appcompat:appcompat:1.0.2")
 }
