@@ -9,6 +9,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.systemDK.busunheval.R
+import com.systemDK.busunheval.activities.ConsultasActivity
 import com.systemDK.busunheval.activities.MainActivity
 import com.systemDK.busunheval.models.Estudiante
 import com.systemDK.busunheval.providers.AuthProvider
@@ -35,6 +36,7 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
         getEstudiante()
 
         linearLayoutLogout?.setOnClickListener { goToMain() }
+        linearLayoutAsistente?.setOnClickListener { goToAsistente() }
         return view
     }
 
@@ -46,7 +48,7 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
     }
 
     private fun goToAsistente(){
-        val i = Intent(activity, MainActivity::class.java)
+        val i = Intent(activity, ConsultasActivity::class.java)
         startActivity(i)
     }
 
