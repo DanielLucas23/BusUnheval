@@ -32,6 +32,7 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
 
         textViewUserName = view.findViewById(R.id.textViewUserName)
         linearLayoutLogout = view.findViewById(R.id.linearLayoutLogout)
+        linearLayoutAsistente = view.findViewById(R.id.linearLayoutAsistente)
 
         getEstudiante()
 
