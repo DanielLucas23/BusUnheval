@@ -22,6 +22,9 @@
             android:name=".activities.MapActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.ConsultasActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
