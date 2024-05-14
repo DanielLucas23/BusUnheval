@@ -1,6 +1,5 @@
 package com.systemDK.busunheval.activities
 
-import android.R
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -27,7 +26,6 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         //Botones
         binding.btnLogin.setOnClickListener {  Login()  }
-
 
     }
 

@@ -23,6 +23,7 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
     var textViewUserName: TextView? = null
     var linearLayoutLogout: LinearLayout? = null
     var linearLayoutAsistente: LinearLayout? = null
+    var linearLayoutConsultasAR: LinearLayout? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,11 +34,13 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
         textViewUserName = view.findViewById(R.id.textViewUserName)
         linearLayoutLogout = view.findViewById(R.id.linearLayoutLogout)
         linearLayoutAsistente = view.findViewById(R.id.linearLayoutAsistente)
+        linearLayoutConsultasAR = view.findViewById(R.id.linearLayoutConsultasAR)
 
         getEstudiante()
 
         linearLayoutLogout?.setOnClickListener { goToMain() }
         linearLayoutAsistente?.setOnClickListener { goToAsistente() }
+        linearLayoutConsultasAR?.setOnClickListener {  goToConsultasAr() }
         return view
     }
 
@@ -51,6 +54,11 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
     private fun goToAsistente(){
         val i = Intent(activity, ConsultasActivity::class.java)
         startActivity(i)
+    }
+
+    private fun goToConsultasAr(){
+        //val i = Intent(activity, ARActivity::class.java)
+        //artActivity(i)
     }
 
      private fun getEstudiante(){
