@@ -3,14 +3,20 @@ package com.systemDK.busunheval.activities
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.drawable.Drawable
 import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import com.example.easywaylocation.EasyWayLocation
 import com.example.easywaylocation.Listener
 import com.google.android.gms.location.LocationRequest
@@ -19,10 +25,19 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.BitmapDescriptor
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.Marker
+import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.firestore.GeoPoint
 import com.systemDK.busunheval.R
 import com.systemDK.busunheval.databinding.ActivityMapBinding
+import com.systemDK.busunheval.fragments.ModalBottonSheetMenu
+import com.systemDK.busunheval.providers.AuthProvider
+import com.systemDK.busunheval.providers.GeoProvider
+import org.imperiumlabs.geofirestore.callbacks.GeoQueryEventListener
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
@@ -30,6 +45,13 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var googleMap : GoogleMap? = null
     private var easyWayLocation: EasyWayLocation? = null
     private var myLocationLatLng: LatLng? = null
+    private var markerEstudiante: Marker? = null
+    private val geoProvider = GeoProvider()
+    private val authProvider = AuthProvider()
+
+    private val modalMenu = ModalBottonSheetMenu()
+
+    private val conductoresMarkers = ArrayList<Marker>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +76,16 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             Manifest.permission.ACCESS_FINE_LOCATION,
             Manifest.permission.ACCESS_COARSE_LOCATION
         ))
+
+        //Imagen Emergente
+        val btnOpenPopup = findViewById<ImageView>(R.id.imageViewInfo)
+        btnOpenPopup.setOnClickListener {
+            imgEmergente()
+        }
+
+        //Llamar al menu
+        binding.imageViewMenu.setOnClickListener { showModalMenu() }
+
     }
 
     val locationPermission = registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) {permission ->
@@ -75,9 +107,124 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         }
     }
 
+    //Para llamar el menu de opciones
+    private fun showModalMenu(){
+        modalMenu.show(supportFragmentManager, ModalBottonSheetMenu.TAG)
+    }
+
+    //Para obtener la ubicación de los conductores
+    private fun getNearbyConductores(){
+
+        if (myLocationLatLng == null) return
+
+        geoProvider.getNearbyConductor(myLocationLatLng!!, 20.0).addGeoQueryEventListener(object: GeoQueryEventListener {
+
+            override fun onKeyEntered(documentID: String, location: GeoPoint) {
+                //Cuando se encuentre un conductor
+
+                for (marker in conductoresMarkers){
+                    if (marker.tag != null){
+                        if (marker.tag == documentID){
+                            return
+                        }
+                    }
+                }
+
+                //Creamos un nuevo marcador para el conductor conectado
+                val conductorLatLng = LatLng(location.latitude, location.longitude)
+                val marker = googleMap?.addMarker(
+                    MarkerOptions().position(conductorLatLng).title("Bus Disponible").icon(
+                        BitmapDescriptorFactory.fromResource(R.drawable.icon_autobus)
+                    )
+                )
+
+                marker?.tag = documentID
+                conductoresMarkers.add(marker!!)
+
+            }
+
+            override fun onKeyExited(documentID: String) {
+                for (marker in conductoresMarkers){
+                    if (marker.tag != null){
+                        if (marker.tag == documentID){
+                            marker.remove()
+                            conductoresMarkers.remove(marker)
+                            return
+                        }
+                    }
+                }
+            }
+
+            override fun onKeyMoved(documentID: String, location: GeoPoint) {
+
+                for (marker in conductoresMarkers){
+                    if (marker.tag != null) {
+                        if (marker.tag == documentID) {
+                            marker.position = LatLng(location.latitude, location.longitude)
+                        }
+                    }
+                }
+            }
+
+            override fun onGeoQueryError(exception: Exception) {
+
+            }
+
+            override fun onGeoQueryReady() {
+
+            }
+
+
+
+        })
+    }
+
+    private fun imgEmergente(){
+        // Creación de un cuadro de diálogo emergente
+        val alertDialog = AlertDialog.Builder(this)
+        alertDialog.setTitle("Recorrido del Bus Universitario")
+        val imageView = ImageView(this)
+        imageView.setImageResource(R.drawable.recorrido_bus)
+        alertDialog.setView(imageView)
+        alertDialog.show()
+    }
+
+
+    private fun addMarker(){
+        val drawable = ContextCompat.getDrawable(applicationContext,R.drawable.ic_person_ubi)
+        val markerIcon = getMarkerFromDrawable(drawable!!)
+
+        if (markerEstudiante != null){
+            markerEstudiante?.remove() //No redibujar el icono
+        }
+
+        if (myLocationLatLng != null){
+            markerEstudiante = googleMap?.addMarker(
+                MarkerOptions()
+                    .position(myLocationLatLng!!)
+                    .anchor(0.5f, 0.5f)
+                    .flat(true)
+                    .icon(markerIcon)
+            )
+        }
+    }
+
+    private fun getMarkerFromDrawable(drawable: Drawable): BitmapDescriptor{
+        val canvas = Canvas()
+        val bitmap = Bitmap.createBitmap(
+            100,
+            100,
+            Bitmap.Config.ARGB_8888
+        )
+        canvas.setBitmap(bitmap)
+        drawable.setBounds(0, 0, 100, 100)
+        drawable.draw(canvas)
+        return BitmapDescriptorFactory.fromBitmap(bitmap)
+    }
+
     override fun onResume() {
-        super.onResume()
-        easyWayLocation?.startLocation()
+        super.onResume() //Abrimos la pantalla actual
+
     }
 
     override fun onDestroy() { //Cierra la Aplicación o pasamos a otra actividad
@@ -87,6 +234,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
     override fun onMapReady(map: GoogleMap) {
         googleMap = map
+        googleMap?.uiSettings?.isZoomControlsEnabled = true
+        easyWayLocation?.startLocation()
+
         if (ActivityCompat.checkSelfPermission(
                 this,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -97,19 +247,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         ) {
             return
         }
-        googleMap?.isMyLocationEnabled = true
+        googleMap?.isMyLocationEnabled = false
     }
 
     override fun locationOn() {
 
     }
 
-    override fun currentLocation(location: Location) {
+    override fun currentLocation(location: Location) { //Actulización de la ubicación en tiempo real
         myLocationLatLng = LatLng(location.latitude, location.longitude) //Latitud y Longitud de la Posición Actual
 
         googleMap?.moveCamera(CameraUpdateFactory.newCameraPosition(
             CameraPosition.builder().target(myLocationLatLng!!).zoom(17f).build()
         ))
+        getNearbyConductores()
+        addMarker()
     }
 
     override fun locationCancelled() {

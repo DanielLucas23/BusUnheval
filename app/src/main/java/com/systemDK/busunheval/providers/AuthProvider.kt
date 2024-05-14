@@ -31,4 +31,9 @@ class AuthProvider {
         }
         return exist
     }
+
+    fun logout(){
+        auth.signOut()
+    }
+
 }

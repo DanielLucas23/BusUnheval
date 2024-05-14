@@ -12,5 +12,58 @@
         android:layout_height="match_parent"
         android:name="com.google.android.gms.maps.SupportMapFragment" />
 
+    <ImageView
+        android:id="@+id/imageViewMenu"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_menu"
+        android:layout_marginTop="50dp"
+        android:layout_marginStart="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bus Unheval"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:layout_marginTop="60dp"/>
+
+    <ImageView
+        android:id="@+id/imageViewInfo"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/ic_ruta_bus"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="350dp"
+        />
+
+    <Button
+        android:id="@+id/btnOperativo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="OPERATIVO"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/green"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        android:visibility="gone"
+        />
+
+    <Button
+        android:id="@+id/btnInactivo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Inactivo"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/red"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="50dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginLeft="60dp"
+        />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
