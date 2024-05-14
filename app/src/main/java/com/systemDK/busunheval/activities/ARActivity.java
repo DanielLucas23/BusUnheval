@@ -92,7 +92,12 @@ public class ARActivity extends AppCompatActivity {
         }
 
     }
-
+    protected void onPause() {
+        super.onPause();
+        if (mediaPlayer != null && mediaPlayer.isPlaying()) {
+            mediaPlayer.pause();
+        }
+    }
     private void playVideo(Anchor anchor, float extentX, float extentZ) {
 
         mediaPlayer.start();
