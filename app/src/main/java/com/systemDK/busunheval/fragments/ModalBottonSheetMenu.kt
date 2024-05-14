@@ -21,6 +21,7 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
 
     var textViewUserName: TextView? = null
     var linearLayoutLogout: LinearLayout? = null
+    var linearLayoutAsistente: LinearLayout? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,6 +42,11 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
         authProvider.logout() //Cerrar la sesión
         val i = Intent(activity, MainActivity::class.java)
         i.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(i)
+    }
+
+    private fun goToAsistente(){
+        val i = Intent(activity, MainActivity::class.java)
         startActivity(i)
     }
 
