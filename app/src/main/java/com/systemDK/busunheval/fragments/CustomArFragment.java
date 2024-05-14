@@ -1,4 +1,4 @@
-package com.systemDK.busunheval.activities;
+package com.systemDK.busunheval.fragments;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

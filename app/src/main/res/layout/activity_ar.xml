@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.AR">
+    tools:context=".activities.ARActivity">
 
     <fragment
         android:id="@+id/arFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:name="com.systemDK.busunheval.activities.CustomArFragment"/>
+        android:name="com.systemDK.busunheval.fragments.CustomArFragment"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
