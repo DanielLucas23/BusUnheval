@@ -10,6 +10,7 @@ import android.location.Location
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
@@ -120,8 +121,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
         geoProvider.getNearbyConductor(myLocationLatLng!!, 20.0).addGeoQueryEventListener(object: GeoQueryEventListener {
 
             override fun onKeyEntered(documentID: String, location: GeoPoint) {
-                //Cuando se encuentre un conductor
 
+                //Cuando se encuentre un conductor
                 for (marker in conductoresMarkers){
                     if (marker.tag != null){
                         if (marker.tag == documentID){
@@ -138,6 +139,9 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                     )
                 )
 
+                binding.btnOperativo.visibility = View.VISIBLE //MOSTRAR EL BOTON ACTIVO
+                binding.btnInactivo.visibility = View.GONE //OCULTAR EL BOTON INACTIVO
+
                 marker?.tag = documentID
                 conductoresMarkers.add(marker!!)
 
@@ -153,6 +157,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                         }
                     }
                 }
+
+                binding.btnOperativo.visibility = View.GONE
+                binding.btnInactivo.visibility = View.VISIBLE
+
             }
 
             override fun onKeyMoved(documentID: String, location: GeoPoint) {
