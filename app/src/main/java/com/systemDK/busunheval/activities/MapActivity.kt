@@ -32,12 +32,15 @@ import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.GeoPoint
 import com.systemDK.busunheval.R
 import com.systemDK.busunheval.databinding.ActivityMapBinding
 import com.systemDK.busunheval.fragments.ModalBottonSheetMenu
+import com.systemDK.busunheval.models.ConductorLocation
 import com.systemDK.busunheval.providers.AuthProvider
 import com.systemDK.busunheval.providers.GeoProvider
+import com.systemDK.busunheval.utils.CarMoveAnim
 import org.imperiumlabs.geofirestore.callbacks.GeoQueryEventListener
 
 class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
@@ -53,6 +56,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private val modalMenu = ModalBottonSheetMenu()
 
     private val conductoresMarkers = ArrayList<Marker>()
+    private val conductoresLocation = ArrayList<ConductorLocation>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -145,6 +149,11 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 marker?.tag = documentID
                 conductoresMarkers.add(marker!!)
 
+                val dl = ConductorLocation()
+                dl.id = documentID
+                conductoresLocation.add(dl)
+
+
             }
 
             override fun onKeyExited(documentID: String) {
@@ -153,6 +162,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                         if (marker.tag == documentID){
                             marker.remove()
                             conductoresMarkers.remove(marker)
+                            conductoresLocation.removeAt(getPositionConductor(documentID))
                             return
                         }
                     }
@@ -166,9 +176,21 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             override fun onKeyMoved(documentID: String, location: GeoPoint) {
 
                 for (marker in conductoresMarkers){
+
+                    val start = LatLng(location.latitude, location.longitude)
+                    var end: LatLng? = null
+                    val position = getPositionConductor(marker.tag.toString())
+
                     if (marker.tag != null) {
                         if (marker.tag == documentID) {
-                            marker.position = LatLng(location.latitude, location.longitude)
+                            //marker.position = LatLng(location.latitude, location.longitude)
+                            if (conductoresLocation[position].latlng != null){
+                                end = conductoresLocation[position].latlng
+                            }
+                            conductoresLocation[position].latlng = LatLng(location.latitude, location.longitude)
+                            if (end != null){
+                                CarMoveAnim.carAnim(marker, end, start)
+                            }
                         }
                     }
                 }
@@ -185,6 +207,17 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
 
 
         })
+    }
+
+    private fun getPositionConductor(id:String): Int{
+        var position = 0
+        for (i in conductoresLocation.indices){
+            if (id == conductoresLocation[i].id){
+                position = i
+                break
+            }
+        }
+        return position
     }
 
     private fun imgEmergente(){
