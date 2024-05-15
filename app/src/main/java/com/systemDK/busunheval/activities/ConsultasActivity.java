@@ -76,6 +76,7 @@ public class ConsultasActivity extends AppCompatActivity implements TextToSpeech
     }
     public ArrayList<Respuestas> proveerDatos(){
         ArrayList<Respuestas> respuestas = new ArrayList<>();
+
         respuestas.add(new Respuestas("defecto", "¡Aun no estoy programada para responder eso, lo siento!"));
         respuestas.add(new Respuestas("hola", "hola Bienvenido a tu asistente virtual Bus Unheval , en que puedo ayudarte"));
         respuestas.add(new Respuestas("ambo", "Los siguientes horarios son: Ambo a Huánuco hora de salida 5:30am hasta 7:00am y el conductor es Manuel Lopez de la Puente. Huánuco a Ambo desde las 8:00pm hasta las 9:45pm y el conductor es Felipe Lino Beteta."));
