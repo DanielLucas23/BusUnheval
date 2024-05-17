@@ -56,10 +56,17 @@ public class CustomArFragment extends ArFragment {
             Bitmap image1 = BitmapFactory.decodeResource(getResources(), R.drawable.image1);
             aid.addImage("image1", image1);
 
-
+            Bitmap image2 = BitmapFactory.decodeResource(getResources(), R.drawable.image2);
+            aid.addImage("image2", image2);
 
             Bitmap image3 = BitmapFactory.decodeResource(getResources(), R.drawable.image3);
             aid.addImage("image3", image3);
+
+            Bitmap image4 = BitmapFactory.decodeResource(getResources(), R.drawable.image4);
+            aid.addImage("image4", image4);
+
+            Bitmap image5 = BitmapFactory.decodeResource(getResources(), R.drawable.image5);
+            aid.addImage("image5", image5);
 
 
 
