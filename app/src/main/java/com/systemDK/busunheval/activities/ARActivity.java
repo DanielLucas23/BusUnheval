@@ -60,10 +60,9 @@ public class ARActivity extends AppCompatActivity {
     private void setupImageToVideoMap() {
         imageToVideoMap = new HashMap<>();
         imageToVideoMap.put("image1", R.raw.video1);
-        imageToVideoMap.put("image2", R.raw.video2);
+
         imageToVideoMap.put("image3", R.raw.video3);
-        imageToVideoMap.put("image4", R.raw.video4);
-        imageToVideoMap.put("image5", R.raw.video5);
+
     }
 
     private void onUpdate(FrameTime frameTime) {
