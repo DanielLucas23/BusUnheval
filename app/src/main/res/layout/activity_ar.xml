@@ -11,5 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:name="com.systemDK.busunheval.fragments.CustomArFragment"/>
+    <!-- Lottie Animation View -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/animation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:lottie_rawRes="@raw/animation"
+        app:lottie_autoPlay="false"
+        app:lottie_loop="false" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

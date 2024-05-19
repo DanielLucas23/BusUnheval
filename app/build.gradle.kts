@@ -77,4 +77,6 @@ dependencies {
     implementation ("com.google.ar:core:1.29.0")
     implementation ("com.karumi:dexter:5.0.0")
     implementation ("androidx.appcompat:appcompat:1.0.2")
+
+    implementation ("com.airbnb.android:lottie:3.7.0")
 }
