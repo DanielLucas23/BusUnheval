@@ -27,8 +27,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
-
 import com.airbnb.lottie.LottieAnimationView;
+
 
 
 public class ARActivity extends AppCompatActivity {

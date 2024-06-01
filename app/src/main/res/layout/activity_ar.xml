@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,8 +10,11 @@
     <fragment
         android:id="@+id/arFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:name="com.systemDK.busunheval.fragments.CustomArFragment"/>
+        android:layout_height="0dp"
+        android:layout_marginBottom="64dp"
+    android:name="com.systemDK.busunheval.fragments.CustomArFragment"
+    app:layout_constraintBottom_toTopOf="@+id/buttonContainer" />
+
     <!-- Lottie Animation View -->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/animation_view"
@@ -20,6 +24,34 @@
         android:visibility="gone"
         app:lottie_rawRes="@raw/animation"
         app:lottie_autoPlay="false"
-        app:lottie_loop="false" />
+        app:lottie_loop="false"
+        app:layout_constraintBottom_toTopOf="@+id/buttonContainer" /> <!-- Ajusta para que el Lottie Animation View esté encima de los botones -->
+
+    <!-- Contenedor de botones -->
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- Botones -->
+        <Button
+            android:id="@+id/fireButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Fire"
+            android:onClick="onFireButtonClick" />
+
+        <Button
+            android:id="@+id/otherButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Other"
+            android:onClick="onOtherButtonClick" />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
