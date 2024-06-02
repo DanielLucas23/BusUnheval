@@ -1,4 +1,4 @@
-import org.jetbrains.kotlin.storage.CacheResetOnProcessCanceled.enabled
+
 
 plugins {
     alias(libs.plugins.android.application)
@@ -39,9 +39,7 @@ android {
     buildFeatures{
         viewBinding = true
     }
-    viewBinding {
-        enabled = true
-    }
+
 
 }
 
