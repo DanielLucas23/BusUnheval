@@ -23,21 +23,14 @@
         app:lottie_loop="true"
         android:visibility="gone"/>
     <ImageView
-        android:id="@+id/imageViewInfo"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:src="@drawable/ic_ruta_bus"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="350dp"
+        android:id="@+id/maps"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:text="Maps"
+        android:src="@drawable/panel"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="300dp"
         />
 
-    <Button
-        android:id="@+id/maps"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Maps"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-     />
+
 </RelativeLayout>

@@ -109,15 +109,8 @@ public class ARActivity extends AppCompatActivity {
             public void onError(String utteranceId) {}
         });
 
-        ImageView btnOpenPopup = findViewById(R.id.imageViewInfo);
-        btnOpenPopup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                imgEmergente();
-            }
-        });
 
-        maps=(Button)findViewById(R.id.maps);
+        ImageView maps= findViewById(R.id.maps);
         maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -159,6 +152,24 @@ public class ARActivity extends AppCompatActivity {
                     break;
 
                 } else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image1")) {
+                    // Verificar si se ha encontrado la segunda imagen (ejemplo)
+                    // Incrementar el contador de imágenes encontradas
+                    imagesFoundCount++;
+                    // Reproducir el video asociado a la imagen
+                    playVideo(image.createAnchor(image.getCenterPose()), image.getExtentX(), image.getExtentZ(), imageName);
+                    // Salir del bucle
+                    break;
+                }
+                else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image2")) {
+                    // Verificar si se ha encontrado la segunda imagen (ejemplo)
+                    // Incrementar el contador de imágenes encontradas
+                    imagesFoundCount++;
+                    // Reproducir el video asociado a la imagen
+                    playVideo(image.createAnchor(image.getCenterPose()), image.getExtentX(), image.getExtentZ(), imageName);
+                    // Salir del bucle
+                    break;
+                }
+                else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image3")) {
                     // Verificar si se ha encontrado la segunda imagen (ejemplo)
                     // Incrementar el contador de imágenes encontradas
                     imagesFoundCount++;
