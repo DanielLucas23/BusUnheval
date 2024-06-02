@@ -77,15 +77,20 @@ public class ConsultasActivity extends AppCompatActivity implements TextToSpeech
     public ArrayList<Respuestas> proveerDatos(){
         ArrayList<Respuestas> respuestas = new ArrayList<>();
 
-        respuestas.add(new Respuestas("defecto", "¡Aun no estoy programada para responder eso, lo siento!"));
-        respuestas.add(new Respuestas("hola", "hola Bienvenido a tu asistente virtual Bus Unheval , en que puedo ayudarte"));
-        respuestas.add(new Respuestas("ambo", "Los siguientes horarios son: Ambo a Huánuco hora de salida 5:30am hasta 7:00am y el conductor es Manuel Lopez de la Puente. Huánuco a Ambo desde las 8:00pm hasta las 9:45pm y el conductor es Felipe Lino Beteta."));
-        respuestas.add(new Respuestas("moras", "Los siguientes horarios son: Moras a Ciudad Universitaria hora de salida 6:00am hasta 8:00am y el conductor es Teodoro Crisanto Apac. Ciudad Universitaria a Moras desde las 11:45am hasta la 1:45pm y el conductor es Hugo Velásquez Cespedes."));
-        respuestas.add(new Respuestas("minutos", " El bus llegará en 10 minutos a su destino"));
-        respuestas.add(new Respuestas("en donde se encuentra el bus", "Estamos en la avenida Universitaria a 500 metros de la Universidad."));
+        respuestas.add(new Respuestas("hola", "Hola Bienvenido a tu Asistente Virtual Bus Unheval , en que puedo ayudarte:"));
+        respuestas.add(new Respuestas("defecto", "Aun no estoy programado para responder eso, lo siento"));
+        respuestas.add(new Respuestas("rutas", "Las rutas son: ruta 1:Huánuco Centro, ruta 2: Santa Maria del Valle y ruta 3: Ambo"));
+        respuestas.add(new Respuestas("horario de la ruta 1", "Turno Mañana: hora de salida de la universidad 6:30 a.m. hora de llegada a centro de huánuco 7:00 a.m, " +
+                "Turno Tarde: hora de salida de la universidad 12:00 p.m. hora de llegada a centro de huánuco 1:00 p.m " +
+                "y Turno Noche: hora de salida de la universidad 7:00 p.m. hora de llegada a centro de huánuco 7:30 p.m"));
+        respuestas.add(new Respuestas("horario de la ruta 2", "Turno Mañana: hora de salida de santa maria del valle 5:00 a.m. hora de llegada a la universidad 7:00 a.m, " +
+                "y Turno Noche: hora de salida de la universidad 7:00 p.m. hora de llegada a santa maria del valle 8:30 p.m"));
+        respuestas.add(new Respuestas("horario de la ruta 3", "Turno Mañana: hora de salida de ambo 5:00 a.m. hora de llegada a la universidad 7:00 a.m, " +
+                "y Turno Noche: hora de salida de la universidad 7:00 p.m. hora de llegada a ambo 8:30 p.m"));
+        respuestas.add(new Respuestas("en donde se encuentra el bus", "Estamos en la avenida Universitaria a 300 metros de la Universidad."));
         respuestas.add(new Respuestas("chiste", "dime tus referencias xd"));
         respuestas.add(new Respuestas("adios", "Gracias por utilizar el asistente virtual Bus Unheval, hasta luego"));
-        respuestas.add(new Respuestas("como estas", "bien gracias espero serte de ayuda"));
+        respuestas.add(new Respuestas("como estas", "bien gracias, espero serte de ayuda"));
         respuestas.add(new Respuestas("estoy", "en la universidad Unheval"));
 
         return respuestas;
