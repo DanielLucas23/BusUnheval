@@ -1,11 +1,17 @@
 package com.systemDK.busunheval.activities;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
+import android.widget.Button;
 import android.animation.Animator;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.speech.tts.TextToSpeech;
+import android.speech.tts.UtteranceProgressListener;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.ar.core.Anchor;
@@ -66,15 +72,51 @@ public class ARActivity extends AppCompatActivity {
                     renderable = modelRenderable;
                 });
 
-        // Initialize TextToSpeech
+        // Inicializar el LottieAnimationView y cargar la animación desde el directorio raw
+        animationView = findViewById(R.id.lottie_animation_view);
+        animationView.setVisibility(View.VISIBLE); // Hacer visible el LottieAnimationView
+        animationView.setAnimation(R.raw.animation); // Nombre del archivo JSON de la animación en raw
+        animationView.playAnimation(); // Reproducir la animación
+
+        // Inicializar el TextToSpeech
         textToSpeech = new TextToSpeech(this, status -> {
             if (status == TextToSpeech.SUCCESS) {
                 textToSpeech.setLanguage(Locale.getDefault());
+                // Reproducir el mensaje de voz después de un cierto tiempo
+                new Handler().postDelayed(() -> {
+                    textToSpeech.speak("Hola, encuentra los 5 paneles informativos dentro de la universidad", TextToSpeech.QUEUE_FLUSH, null, "messageID");
+                }, 2000); // Esperar 2 segundos antes de reproducir el mensaje
+            } else {
+                Toast.makeText(this, "No se pudo inicializar el TextToSpeech", Toast.LENGTH_SHORT).show();
             }
         });
 
-        // Initialize LottieAnimationView
-        animationView = findViewById(R.id.animation_view);
+        // Agregar un Listener al TextToSpeech para detectar cuando la voz ha terminado de hablar
+        textToSpeech.setOnUtteranceProgressListener(new UtteranceProgressListener() {
+            @Override
+            public void onStart(String utteranceId) {}
+
+            @Override
+            public void onDone(String utteranceId) {
+                // Ocultar la animación cuando el TextToSpeech haya terminado de hablar
+                runOnUiThread(() -> {
+                    animationView.setVisibility(View.GONE);
+                });
+            }
+
+            @Override
+            public void onError(String utteranceId) {}
+        });
+
+        ImageView btnOpenPopup = findViewById(R.id.imageViewInfo);
+        btnOpenPopup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imgEmergente();
+            }
+        });
+
+
     }
 
     private void setupImageToVideoMap() {
@@ -87,54 +129,41 @@ public class ARActivity extends AppCompatActivity {
     }
 
     private void onUpdate(FrameTime frameTime) {
+        // Obtener el fotograma actual y las imágenes aumentadas actualizadas
         Frame frame = arFragment.getArSceneView().getArFrame();
         Collection<AugmentedImage> augmentedImages = frame.getUpdatedTrackables(AugmentedImage.class);
 
+        // Iterar sobre las imágenes aumentadas
         for (AugmentedImage image : augmentedImages) {
+            // Verificar si la imagen está siendo rastreada
             if (image.getTrackingState() == TrackingState.TRACKING) {
+                // Obtener el nombre de la imagen
                 String imageName = image.getName();
+
+                // Verificar si se ha encontrado la primera imagen
                 if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 0) {
+                    // Incrementar el contador de imágenes encontradas
                     imagesFoundCount++;
+                    // Reproducir el video asociado a la imagen
                     playVideo(image.createAnchor(image.getCenterPose()), image.getExtentX(), image.getExtentZ(), imageName);
-                    notifyUser("¡Muy bien! Encontraste la primera imagen. Sigue buscando la segunda imagen.");
+                    // Mostrar la animación después de reproducir el video
                     break;
-                } else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image1")) { // Example for second image
+
+                } else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image1")) {
+                    // Verificar si se ha encontrado la segunda imagen (ejemplo)
+                    // Incrementar el contador de imágenes encontradas
                     imagesFoundCount++;
+                    // Reproducir el video asociado a la imagen
                     playVideo(image.createAnchor(image.getCenterPose()), image.getExtentX(), image.getExtentZ(), imageName);
-                    notifyUser("¡Muy bien! Encontraste la segunda imagen. Sigue buscando la siguiente imagen.");
+                    // Salir del bucle
                     break;
                 }
-                // Add additional conditions for subsequent images here
+                // Agregar condiciones adicionales para imágenes posteriores aquí
             }
         }
     }
 
-    private void notifyUser(String message) {
-        // Show a toast (optional)
-        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
-
-        // Speak the message
-        textToSpeech.speak(message, TextToSpeech.QUEUE_FLUSH, null, null);
-
-        // Play the animation
-        animationView.setVisibility(View.VISIBLE);
-        animationView.playAnimation();
-        animationView.addAnimatorListener(new Animator.AnimatorListener() {
-            @Override
-            public void onAnimationStart(Animator animation) {}
-
-            @Override
-            public void onAnimationEnd(Animator animation) {
-                animationView.setVisibility(View.GONE);
-            }
-
-            @Override
-            public void onAnimationCancel(Animator animation) {}
-
-            @Override
-            public void onAnimationRepeat(Animator animation) {}
-        });
-    }
+    //Imagen Emergente
 
     @Override
     protected void onPause() {
@@ -152,7 +181,15 @@ public class ARActivity extends AppCompatActivity {
         }
         super.onDestroy();
     }
-
+    private void imgEmergente() {
+        // Creación de un cuadro de diálogo emergente
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setTitle("Guia de paneles informativos - UNHEVAL");
+        ImageView imageView = new ImageView(this);
+        imageView.setImageResource(R.drawable.recorrido_bus);
+        alertDialog.setView(imageView);
+        alertDialog.show();
+    }
     private void playVideo(Anchor anchor, float extentX, float extentZ, String imageName) {
         if (mediaPlayer != null) {
             mediaPlayer.release();

@@ -40,6 +40,7 @@ public class ConsultasActivity extends AppCompatActivity implements TextToSpeech
             prepararRespuesta(escuchado);
         }
     }
+
     private void prepararRespuesta(String escuchado) {
         String normalizar = Normalizer.normalize(escuchado, Normalizer.Form.NFD);
         String sintilde = normalizar.replaceAll("[^\\p{ASCII}]", "");
