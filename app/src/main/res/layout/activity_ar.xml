@@ -31,4 +31,13 @@
         android:layout_marginLeft="350dp"
         />
 
+    <Button
+        android:id="@+id/maps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Maps"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+     />
 </RelativeLayout>

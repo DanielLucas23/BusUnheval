@@ -40,6 +40,7 @@ import com.airbnb.lottie.LottieAnimationView;
 public class ARActivity extends AppCompatActivity {
     private ExternalTexture texture;
     private MediaPlayer mediaPlayer;
+    Button maps;
     private ArFragment arFragment;
     private Scene scene;
     private ModelRenderable renderable;
@@ -116,7 +117,15 @@ public class ARActivity extends AppCompatActivity {
             }
         });
 
+        maps=(Button)findViewById(R.id.maps);
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Intent i = new Intent( ARActivity.this,Paneles.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void setupImageToVideoMap() {
