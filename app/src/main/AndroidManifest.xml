@@ -34,8 +34,12 @@
             android:name=".activities.ARActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.Paneles"
+            android:exported="false" />
+        <activity
             android:name=".activities.MainActivity"
             android:exported="true">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
