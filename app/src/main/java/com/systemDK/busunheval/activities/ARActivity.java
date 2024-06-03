@@ -124,10 +124,10 @@ public class ARActivity extends AppCompatActivity {
     private void setupImageToVideoMap() {
         imageToVideoMap = new HashMap<>();
         imageToVideoMap.put("image1", R.raw.video1);
-        imageToVideoMap.put("image2", R.raw.video2);
-        imageToVideoMap.put("image3", R.raw.video3);
-        imageToVideoMap.put("image4", R.raw.video4);
-        imageToVideoMap.put("image5", R.raw.video5);
+        //imageToVideoMap.put("image2", R.raw.video2);
+        //imageToVideoMap.put("image3", R.raw.video3);
+        //imageToVideoMap.put("image4", R.raw.video4);
+        //imageToVideoMap.put("image5", R.raw.video5);
     }
 
     private void onUpdate(FrameTime frameTime) {
@@ -160,24 +160,7 @@ public class ARActivity extends AppCompatActivity {
                     // Salir del bucle
                     break;
                 }
-                else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image2")) {
-                    // Verificar si se ha encontrado la segunda imagen (ejemplo)
-                    // Incrementar el contador de imágenes encontradas
-                    imagesFoundCount++;
-                    // Reproducir el video asociado a la imagen
-                    playVideo(image.createAnchor(image.getCenterPose()), image.getExtentX(), image.getExtentZ(), imageName);
-                    // Salir del bucle
-                    break;
-                }
-                else if (imageToVideoMap.containsKey(imageName) && imagesFoundCount == 1 && !imageName.equals("image3")) {
-                    // Verificar si se ha encontrado la segunda imagen (ejemplo)
-                    // Incrementar el contador de imágenes encontradas
-                    imagesFoundCount++;
-                    // Reproducir el video asociado a la imagen
-                    playVideo(image.createAnchor(image.getCenterPose()), image.getExtentX(), image.getExtentZ(), imageName);
-                    // Salir del bucle
-                    break;
-                }
+
                 // Agregar condiciones adicionales para imágenes posteriores aquí
             }
         }
