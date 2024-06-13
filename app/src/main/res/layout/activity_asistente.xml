@@ -8,6 +8,18 @@
     tools:context=".activities.AsistenteActivity">
 
     <ImageView
+        android:id="@+id/imageViewBack"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_back"
+        android:contentDescription="Click"
+        android:clickable="true"
+        android:focusable="true"
+        android:onClick="onStartButtonClick"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="20dp" />
+
+    <ImageView
         android:id="@+id/imageView"
         android:layout_width="218dp"
         android:layout_height="281dp"

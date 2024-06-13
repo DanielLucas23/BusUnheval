@@ -22,6 +22,7 @@ class AsistenteActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
     private lateinit var questionTextView: TextView
     private lateinit var answerTextView: TextView
     private lateinit var startButton: ImageView
+    private lateinit var  imageViewBack: ImageView
     private lateinit var tts: TextToSpeech
     private lateinit var db: FirebaseFirestore
     private val similarityThreshold = 0.5f  // Umbral de similitud para considerar una pregunta como "parecida"
@@ -32,6 +33,7 @@ class AsistenteActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         enableEdgeToEdge()
         setContentView(R.layout.activity_asistente)
 
+        imageViewBack = findViewById(R.id.imageViewBack)
         questionTextView = findViewById(R.id.question)
         answerTextView = findViewById(R.id.answer)
         startButton = findViewById(R.id.startButton) // Asignación como ImageView
@@ -41,6 +43,8 @@ class AsistenteActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
         // Inicializar Firestore
         db = FirebaseFirestore.getInstance()
+
+        imageViewBack.setOnClickListener { finish() }
 
         startButton.setOnClickListener {
             startVoiceRecognition()
