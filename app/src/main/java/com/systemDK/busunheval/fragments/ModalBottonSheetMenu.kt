@@ -10,6 +10,7 @@ import android.widget.TextView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.systemDK.busunheval.R
 import com.systemDK.busunheval.activities.ARActivity
+import com.systemDK.busunheval.activities.AsistenteActivity
 import com.systemDK.busunheval.activities.ConsultasActivity
 import com.systemDK.busunheval.activities.MainActivity
 import com.systemDK.busunheval.models.Estudiante
@@ -53,7 +54,7 @@ class ModalBottonSheetMenu: BottomSheetDialogFragment() {
     }
 
     private fun goToAsistente(){
-        val i = Intent(activity, ConsultasActivity::class.java)
+        val i = Intent(activity, AsistenteActivity::class.java)
         startActivity(i)
     }
 

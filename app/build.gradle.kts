@@ -74,6 +74,8 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Asistente
+    implementation ("com.github.mpkorstanje:simmetrics-core:4.1.1")
 
     // Otras dependencias necesarias para tu proyecto ar
 
