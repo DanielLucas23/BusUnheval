@@ -39,6 +39,7 @@ import com.systemDK.busunheval.databinding.ActivityMapBinding
 import com.systemDK.busunheval.fragments.ModalBottonSheetMenu
 import com.systemDK.busunheval.models.ConductorLocation
 import com.systemDK.busunheval.providers.AuthProvider
+import com.systemDK.busunheval.providers.EstudianteProvider
 import com.systemDK.busunheval.providers.GeoProvider
 import com.systemDK.busunheval.utils.CarMoveAnim
 import org.imperiumlabs.geofirestore.callbacks.GeoQueryEventListener
@@ -52,6 +53,7 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
     private var markerEstudiante: Marker? = null
     private val geoProvider = GeoProvider()
     private val authProvider = AuthProvider()
+    private val estudianteProvider = EstudianteProvider()
 
     private val modalMenu = ModalBottonSheetMenu()
 
@@ -88,6 +90,8 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
             imgEmergente()
         }
 
+        createToken()
+
         //Llamar al menu
         binding.imageViewMenu.setOnClickListener { showModalMenu() }
 
@@ -110,6 +114,10 @@ class MapActivity : AppCompatActivity(), OnMapReadyCallback, Listener {
                 }
             }
         }
+    }
+
+    private fun createToken(){
+        estudianteProvider.createToken(authProvider.getId())
     }
 
     //Para llamar el menu de opciones

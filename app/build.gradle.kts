@@ -56,8 +56,7 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:33.0.0"))
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore-ktx")
-
-
+    implementation("com.google.firebase:firebase-messaging-ktx")
 
     //Integrar el mapa de Google
     implementation("com.google.maps.android:maps-ktx:3.2.0")
@@ -76,6 +75,10 @@ dependencies {
 
     // Asistente
     implementation ("com.github.mpkorstanje:simmetrics-core:4.1.1")
+
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation("com.google.code.gson:gson:2.10.1")
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // Otras dependencias necesarias para tu proyecto ar
 
