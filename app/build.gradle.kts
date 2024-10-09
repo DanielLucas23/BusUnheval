@@ -57,6 +57,7 @@ dependencies {
     implementation(libs.firebase.auth)
     implementation("com.google.firebase:firebase-firestore-ktx")
     implementation("com.google.firebase:firebase-messaging-ktx")
+    implementation("com.onesignal:OneSignal:[5.0.0, 5.99.99]")
 
     //Integrar el mapa de Google
     implementation("com.google.maps.android:maps-ktx:3.2.0")
